@@ -131,10 +131,15 @@ function Home(props) {
     },
   ];
 
-  const [records, setrecords] = useState(data);
-  const handleFilter = () => {
-    
-  }
+  const [records, setRecords] = useState(data);
+
+  const handleFilter = (e) => {
+    const newData = data.filter((row) => {
+      return row.name.toLowerCase().includes(e.target.value.toLowerCase());
+    });
+
+    setRecords(newData);
+  };
 
   return (
     <div>
@@ -144,7 +149,7 @@ function Home(props) {
       </div>
       <DataTable
         columns={columns}
-        data={data}
+        data={records}
         selectableRows
         fixedHeader
         pagination
